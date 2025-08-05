@@ -5,9 +5,9 @@ import com.example.monolithic.point.infrastructure.PointRepository;
 import com.example.monolithic.product.domain.Product;
 import com.example.monolithic.product.infrastructure.ProductRepository;
 import jakarta.annotation.PostConstruct;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
-@ComponentScan
+@Component
 public class TestDataCreator {
 
     private final PointRepository pointRepository;
