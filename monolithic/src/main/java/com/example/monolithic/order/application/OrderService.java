@@ -10,6 +10,7 @@ import com.example.monolithic.point.infrastructure.PointRepository;
 import com.example.monolithic.product.application.ProductService;
 import com.example.monolithic.product.infrastructure.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrderService {
@@ -26,6 +27,7 @@ public class OrderService {
         this.productService = productService;
     }
 
+    @Transactional
     public void placeOrder(PlaceOrderCommand command) {
         Order order = orderRepository.save(new Order());
         Long totalPrice = 0L;

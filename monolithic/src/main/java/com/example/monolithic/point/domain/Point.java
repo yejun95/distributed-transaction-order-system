@@ -22,6 +22,9 @@ public class Point {
         this.amount = amount;
     }
 
+    public Long getAmount() {
+        return amount;
+    }
 
     public void use(Long amount) {
         if (this.amount < amount) {
