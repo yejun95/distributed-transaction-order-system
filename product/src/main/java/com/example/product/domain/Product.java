@@ -15,6 +15,9 @@ public class Product {
 
     private Long reservedQuantity;
 
+    @Version
+    private Long version;
+
     public Product() {
     }
 
@@ -26,7 +29,7 @@ public class Product {
     public Long reserve(Long requestedQuantity) {
         long reservableQuantity = this.quantity - this.reservedQuantity;
 
-        if (requestedQuantity < requestedQuantity) {
+        if (reservableQuantity < requestedQuantity) {
             throw new RuntimeException("예약할 수 있는 수량이 부족합니다.");
         }
 
@@ -45,5 +48,16 @@ public class Product {
         }
 
         this.quantity = this.quantity - quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                ", reservedQuantity=" + reservedQuantity +
+                ", version=" + version +
+                '}';
     }
 }

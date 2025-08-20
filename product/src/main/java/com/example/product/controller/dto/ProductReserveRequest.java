@@ -14,13 +14,13 @@ public record ProductReserveRequest(
                 requestId,
                 items.stream()
                         .map(
-                                item -> new ProductReserveCommand.ReserveItem(item.productId, item.reservQuantity)
+                                item -> new ProductReserveCommand.ReserveItem(item.productId, item.reserveQuantity)
                         ).toList()
         );
     }
 
     public record ReserveItem(
             Long productId,
-            Long reservQuantity
+            Long reserveQuantity
     ){}
 }

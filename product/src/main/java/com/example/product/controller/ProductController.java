@@ -1,5 +1,6 @@
 package com.example.product.controller;
 
+import com.example.product.application.ProductFacadeService;
 import com.example.product.application.ProductService;
 import com.example.product.application.RedisLockService;
 import com.example.product.controller.dto.ProductReserveRequest;
@@ -12,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductController {
 
-    private final ProductService productService;
+    private final ProductFacadeService productFacadeService;
     private final RedisLockService redisLockService;
 
-    public ProductController(ProductService productService, RedisLockService redisLockService) {
-        this.productService = productService;
+    public ProductController(ProductFacadeService productFacadeService, RedisLockService redisLockService) {
+        this.productFacadeService = productFacadeService;
         this.redisLockService = redisLockService;
     }
 
@@ -30,7 +31,7 @@ public class ProductController {
         }
 
         try {
-            ProductReserveResult result = productService.tryReserve(request.toCommand());
+            ProductReserveResult result = productFacadeService.tryReserve(request.toCommand());
 
             return new ProductReserveResponse(result.totalPrice());
         } finally {
